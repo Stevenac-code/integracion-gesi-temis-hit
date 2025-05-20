@@ -1,0 +1,15 @@
+************************************************************ ZONA 1 *******************************************************************
+ 
+zona 1 => zonas_interes = ['CIUDAD BOLIVAR','TUNJUELITO','USME','ANTONIO NARINO','RAFAEL URIBE URIBE','SAN CRISTOBAL']
+ 
+12D GetDocumento: https://temis.inmel.co/INT/api/ApiConnector?connector=GetDocumento12D&apiToken=eYy0G/LUCuq6BRquw0241kAQqJPmGtD/PWJs3F7wfd88qCWBvoARxQUAoTpkd7qK
+ 
+12D OrdenEmergenciaPost: https://temis.inmel.co/INT/api/ApiConnector?connector=DocumentoOrdenEmergencia12D&apiToken=f7sxcyEVStVzQC+3iXeRtm5/t2v4p8Z1izlFNFWkdrweo6pwEXzl4hqYqMiw3UTE3X68YnImmBTDtT8+DoxeLw==
+ 
+************************************************************** ZONA 2 *****************************************************************
+ 
+zona 2 => zonas_interes = ['BOSA','KENNEDY','SIBATE','SOACHA COMUNA 1','SOACHA COMUNA 2','SOACHA COMUNA 3','SOACHA COMUNA 4','SOACHA COMUNA 5','SOACHA COMUNA 6','SOACHA RURAL']
+ 
+12E GetDocumento: https://temis.inmel.co/INT/api/ApiConnector?connector=GetDocumento12E&apiToken=8d5A9RMvQefdl5fa6b3mlkk7CZ2vZAR86dft630tqu/Bs0Ma1TsOKRtHtnheS8SS
+ 
+12E OrdenEmergeciaPost: https://temis.inmel.co/INT/api/ApiConnector?connector=DocumentoOrdenEmergencia12E&apiToken=f7sxcyEVStVzQC+3iXeRtm5/t2v4p8Z1izlFNFWkdryN6Ej7mmnTzJYv7HqB0kU+1hbaKABwyNFiDpYCdNDcUA==

@@ -1,0 +1,99 @@
+{   
+    "security": {
+        "authorized_mac": "50-EB-F6-D6-A2-D2"
+    },
+
+    "sharepoint": {
+        "sp_base_url": "https://inmelingenieria.sharepoint.com",
+        "sp_site_name": "Analytics-0018-TICPrincipal",
+        "sp_configs_folder": "/sites/Analytics-0018-TICPrincipal/Documentos compartidos/0018 - TIC Principal/GESI/PC_Emergencias/Configuraciones",
+        "sp_images_folder": "/sites/Analytics-0018-TICPrincipal/Documentos compartidos/0018 - TIC Principal/GESI/PC_Emergencias/Imagenes",        
+        "sp_temis_load_logs_folder": "/sites/Analytics-0018-TICPrincipal/Documentos compartidos/0018 - TIC Principal/GESI/PC_Emergencias/Logs_Carga_Temis",
+        "sp_system_logs_folder": "/sites/Analytics-0018-TICPrincipal/Documentos compartidos/0018 - TIC Principal/GESI/PC_Emergencias/Logs_Sistema",
+        "sp_resources_folder": "/sites/Analytics-0018-TICPrincipal/Documentos compartidos/0018 - TIC Principal/GESI/PC_Emergencias/Recursos"
+    },
+    "gesi": {
+        "wait_time": {
+            "page_load": 5,
+            "between_actions": 2,
+            "after_refresh": 20
+        }
+    },
+    "temis": {
+        "url_consulta": "https://temisimp.inmel.co/integraciondev/api/ApiConnector?connector=GetDocumento&apiToken=Fc2UwGCib4k/SyNXR6YcPwwRdjZxDqGXEZ+tKEHIsP1bBGv3BWSZjWwyX+3ojU03",
+        "url_carga": "https://temisimp.inmel.co/integraciondev/api/ApiConnector?connector=DocumentoOrdenEmergencia&apiToken=f7sxcyEVStVzQC+3iXeRtm5/t2v4p8Z1izlFNFWkdrzfOFRp+ZiUe0XjM6sGwc2hdQNQgWegBG62eWAMZBufZQ==",
+        "data_consulta": {
+            "fromUri": "",
+            "isListResult": false
+        },
+        "data_carga": {
+            "dataRequest": {
+                "IdDocumento": 0,
+                "NroDocumento": "",
+                "IdDocumentoEstado": 4,
+                "FechaCreacion": "",
+                "IdSedeOperacion": 8,
+                "IdTipoDocumento": 5,
+                "PrefijoDocumento": "O",
+                "FechaDocumento": "",
+                "Observaciones": "",
+                "IdUsuarioCreador": 1,
+                "CamposAdicionales": {
+                    "Atributo158": "",
+                    "Atributo160": "",
+                    "Atributo99": "",
+                    "Atributo165": "",
+                    "Atributo119": "",
+                    "Atributo125": "",
+                    "Atributo167": "",
+                    "Atributo159": "",
+                    "Atributo346": "",
+                    "Atributo161": ""
+                },
+                "DocumentoCampoAdicional": {
+                    "IdSubPrograma": 3,
+                    "DescripcionSubPrograma": "OPERACIONES NO PROGRAMADOS",
+                    "IdServicioSolicitado": 4,
+                    "DescripcionServicioSolicitado": "BT MASIVO"
+                },
+                "Detalles": [],
+                "NombreTercero": "",
+                "NombreSubBodegaOrigen": "",
+                "NombreSubBodegaDestino": "",
+                "NombreTipoDocumento": "",
+                "Tercero": {
+                    "EsCliente": true
+                },
+                "Actividades": [],
+                "Materiales": [],
+                "SubBodegas": [],
+                "FechaCarga": "",
+                "FechaFinalEjecucion": "",
+                "IdSubPrograma": 0,
+                "IdServicioSolicitado": 0,
+                "EstadoANS": "",
+                "IdConceptoDevolucion": 1,
+                "DescripcionEstado": "",
+                "DescripcionCerrado": false,
+                "IdDocumentoEstadoAnterior": 0,
+                "DocumentoArchivos": [],
+                "IdClaseServicio": 0,
+                "Version": 0,
+                "Seguimientos": [],
+                "Latitud": 0,
+                "Longitud": 0,
+                "PlanesAccion": [],
+                "LlevaAnalisisCausa": false,
+                "LatitudOrigen": "",
+                "LongitudOrigen": "",
+                "Proyectos": [],
+                "MotivoTraslado": "",
+                "TrasladoPara": "",
+                "DevolucionA": "",
+                "UsuarioTraslado": ""
+            },
+            "fromUri": "",
+            "isListResult": false
+        }
+    }
+}
