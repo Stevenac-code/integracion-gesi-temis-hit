@@ -121,13 +121,12 @@ El sistema utiliza un archivo `config.json` en SharePoint que contiene:
 - Configuración de TEMIS
 - Rutas de recursos
 
-### Archivo de Configuración para intereción con GESI, `gesi_config.xlsx`
-El sistema utiliza un archivo `gesi_config.xlsx` en SharePoint para la interación  con las imagenes de GESI que contiene:
-- Nombre de la imagen a configurar
-- Porcentaje de confian para la busqueda de la imagen
-- Posición del clic en X
-- Posición del clic en Y
-- Descripción de la imagen
+### Archivo de Configuración para intereción con GESI, `gesi_config_coords.xlsx`
+El sistema utiliza un archivo `gesi_config_coords.xlsx` en SharePoint para la interación con las imagenes de GESI que contiene:
+- Hoja "Coordenadas": Coordenadas y valores (de la variables que lo necesiten)
+- Hoja "Tiempos": Tiempos de transición entre acciones
+- Hoja "Areas": Áreas de intéres
+- Hoja "Barrios": Barrios especificos
 
 ### Archivo de Configuración para el ejecutable, `GESI-TEMIS.spec`
 El sistema utiliza un archivo `GESI-TEMIS.spec` para la creación del ejecutable que contiene:
