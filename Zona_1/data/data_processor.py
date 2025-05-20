@@ -10,6 +10,7 @@ from utils.logger import CustomLogger
 class GesiDataProcessor:
    def __init__(self, sharepoint_manager):
        self.sp_manager = sharepoint_manager
+       self.barrios = self.sp_manager.get_neighborhoods()
        self.logger = CustomLogger('DataProcessor')
 
    def extraer_telefono(self, text):
@@ -88,10 +89,8 @@ class GesiDataProcessor:
            self.logger.info("Aplicando filtros específicos")
            resultado['cft'] = resultado['cft'].str.replace(r'^[^.]*\.', '', regex=True)
            
-           zonas_interes = ['CIUDAD BOLIVAR','TUNJUELITO','USME',
-                            'ANTONIO NARINO','RAFAEL URIBE URIBE','SAN CRISTOBAL']
-                           
-           resultado = resultado[resultado['cft'].str.contains('|'.join(zonas_interes), case=False, na=False)]
+           self.logger.info(f"Barrios de interés a filtrar: {self.barrios}")
+           resultado = resultado[resultado['cft'].str.contains('|'.join(self.barrios), case=False, na=False)]
            
            # Filtrar por tensión BT
            resultado_filtrado = resultado[resultado['tensionLevel.shortDescription'] == 'BT']
@@ -109,7 +108,7 @@ class GesiDataProcessor:
            segundo = f"{fecha_hora_actual.second:02d}"
            # milesimas = f"{fecha_hora_actual.microsecond:06d}"
            # Construir el ID de numero telefonico vacio
-           id_numero_telefonico_vacio = f"{mes}{dia}{hora}{minuto}{segundo}"           
+           id_numero_telefonico_vacio = f"{mes}{dia}{hora}{minuto}{segundo}"
            resultado_filtrado['commentCc'] = resultado_filtrado['commentCc'].astype(str)
            resultado_filtrado['Atributo159'] = resultado_filtrado['commentCc'].apply(self.extraer_telefono)
            resultado_filtrado['Atributo159'] = resultado_filtrado['Atributo159'].replace([None, ''], np.nan)

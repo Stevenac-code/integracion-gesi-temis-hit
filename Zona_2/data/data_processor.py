@@ -10,6 +10,7 @@ from utils.logger import CustomLogger
 class GesiDataProcessor:
    def __init__(self, sharepoint_manager):
        self.sp_manager = sharepoint_manager
+       self.barrios = self.sp_manager.get_neighborhoods()
        self.logger = CustomLogger('DataProcessor')
 
    def extraer_telefono(self, text):
@@ -88,12 +89,8 @@ class GesiDataProcessor:
            self.logger.info("Aplicando filtros específicos")
            resultado['cft'] = resultado['cft'].str.replace(r'^[^.]*\.', '', regex=True)
            
-           zonas_interes = ['BOSA','KENNEDY','SIBATE',
-                            'SOACHA COMUNA 1','SOACHA COMUNA 2','SOACHA COMUNA 3',
-                            'SOACHA COMUNA 4','SOACHA COMUNA 5','SOACHA COMUNA 6',
-                            'SOACHA RURAL']
-                           
-           resultado = resultado[resultado['cft'].str.contains('|'.join(zonas_interes), case=False, na=False)]
+           self.logger.info(f"Barrios de interés a filtrar: {self.barrios}")
+           resultado = resultado[resultado['cft'].str.contains('|'.join(self.barrios), case=False, na=False)]
            
            # Filtrar por tensión BT
            resultado_filtrado = resultado[resultado['tensionLevel.shortDescription'] == 'BT']

@@ -49,13 +49,43 @@ class SharePointManager:
             response = self._session.get(f"{self.config['sp_base_url']}/sites/{self.config['sp_site_name']}/_api/web/GetFileByServerRelativeUrl('{config_path}')/\$value")
             
             if response.status_code == 200:
-                df = pd.read_excel(io.BytesIO(response.content))
+                df = pd.read_excel(io.BytesIO(response.content), sheet_name="Coordenadas")
+                # Convertir a diccionario
                 return df.set_index('element_name').to_dict(orient='index')
             return None
         except Exception as e:
             self.logger.error(f"Error obteniendo configuración de coordenadas: {str(e)}")
             return None
 
+    def get_times_config(self):
+        """Obtiene la configuración de tiempos desde SharePoint"""
+        try:
+            config_path = f"{self.config['sp_configs_folder']}/gesi_config_coords.xlsx"
+            response = self._session.get(f"{self.config['sp_base_url']}/sites/{self.config['sp_site_name']}/_api/web/GetFileByServerRelativeUrl('{config_path}')/\$value")
+            
+            if response.status_code == 200:
+                df = pd.read_excel(io.BytesIO(response.content), sheet_name="Tiempos")
+                # Convertir a diccionario
+                return df.set_index('action').to_dict(orient='index')
+            return None
+        except Exception as e:
+            self.logger.error(f"Error obteniendo configuración de tiempos: {str(e)}")
+            return None
+        
+    def get_areas_of_interest(self):
+        """Obtiene la configuración de áreas desde SharePoint"""
+        try:
+            config_path = f"{self.config['sp_configs_folder']}/gesi_config_coords.xlsx"
+            response = self._session.get(f"{self.config['sp_base_url']}/sites/{self.config['sp_site_name']}/_api/web/GetFileByServerRelativeUrl('{config_path}')/\$value")
+            
+            if response.status_code == 200:
+                df = pd.read_excel(io.BytesIO(response.content), sheet_name="Areas")
+                # Convertir a lista la columna 'areas_of_interest'
+                return df['areas_of_interest'].tolist()
+            return None
+        except Exception as e:
+            self.logger.error(f"Error obteniendo lista de áreas: {str(e)}")
+            return None
 
     def get_trafo_data(self):
         """Lee el archivo de transformadores desde SharePoint"""
@@ -109,7 +139,20 @@ class SharePointManager:
             self.logger.error(f"Error procesando archivo de técnicos: {str(e)}")
             return None
 
-
+    def get_neighborhoods(self):
+        """Obtiene la configuración de barrios desde SharePoint"""
+        try:
+            config_path = f"{self.config['sp_configs_folder']}/gesi_config_coords.xlsx"
+            response = self._session.get(f"{self.config['sp_base_url']}/sites/{self.config['sp_site_name']}/_api/web/GetFileByServerRelativeUrl('{config_path}')/\$value")
+            
+            if response.status_code == 200:
+                df = pd.read_excel(io.BytesIO(response.content), sheet_name="Barrios")
+                # Convertir a lista la columna 'areas_of_interest'
+                return df['neighborhoods'].tolist()
+            return None
+        except Exception as e:
+            self.logger.error(f"Error obteniendo lista de barrios: {str(e)}")
+            return None
 
     def upload_log(self, df_log, file_name):
         """Sube un DataFrame como archivo Excel a SharePoint"""
