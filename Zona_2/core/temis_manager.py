@@ -29,6 +29,10 @@ class TemisManager:
                 data = response.json()
                 self.logger.info(f"Consulta exitosa para ticket {numero_ticket}")
                 return data
+            elif response.status_code == 400:
+                # 400 = No encontrado, lo interpretamos como que no existe el ticket
+                self.logger.warning(f"Ticket {numero_ticket} no encontrado en TEMIS (status 400).")
+                return {"data": None}
             else:
                 self.logger.error(f"Error consultando ticket {numero_ticket}. Status code: {response.status_code}")
                 return None
