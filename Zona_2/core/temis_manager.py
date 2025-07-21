@@ -146,52 +146,6 @@ class TemisManager:
         except Exception as e:
             self.logger.error(f"Error en creación de TDC {datos_tdc['tdc']}: {str(e)}")
             return False
-        
-
-    # def asignar_tecnico_tdc(self, datos_tdc):
-    #     self.logger.info(f"-----------------------------------------------------------------------------------------------------------------")
-    #     self.logger.info(f"INFORMACION DATOS TDC PARA ASIGNAR TECNICO")
-    #     self.logger.info(datos_tdc)
-    #     self.logger.info(f"-----------------------------------------------------------------------------------------------------------------")
-    #     """Asigna un técnico a una TDC existente"""
-    #     try:
-    #         self.logger.info(f"Asignando técnico {datos_tdc['IdBodegaOrigen']} a TDC {datos_tdc['tdc']}")
-            
-    #         data_carga = self.config['data_carga'].copy()
-    #         data_carga["dataRequest"].update({
-    #             "NroDocumento": datos_tdc['tdc'],
-    #             "IdBodegaOrigen": datos_tdc['IdBodegaOrigen'],
-    #             # Mantener el resto de datos para no perder información
-    #             "FechaCreacion": datos_tdc['FechaCreacion'],
-    #             "FechaDocumento": datos_tdc['FechaDocumento'],
-    #             "CamposAdicionales": {
-    #                 "Atributo99": datos_tdc['NroDocumento']  # Ticket original
-    #             }
-    #         })
-
-    #         # Log del payload
-    #         self.logger.info(f"Payload asignación: {json.dumps(data_carga, indent=2)}")
-
-    #         response = requests.post(
-    #             self.config['url_carga'],
-    #             json=data_carga,
-    #             verify=False
-    #         )
-
-    #         response_data = response.json()
-    #         # Log de la respuesta
-    #         self.logger.info(f"Respuesta asignación: {json.dumps(response_data, indent=2)}")
-
-    #         if response.status_code == 200 and response_data.get('succeeded', False):
-    #             self.logger.info(f"Técnico asignado exitosamente a TDC {datos_tdc['tdc']}")
-    #             return True
-    #         else:
-    #             self.logger.error(f"Error asignando técnico. Status: {response.status_code}, Detalle: {response_data}")
-    #             return False
-
-    #     except Exception as e:
-    #         self.logger.error(f"Error en asignación de técnico a TDC {datos_tdc['tdc']}: {str(e)}")
-    #         return False
 
 
     def asignar_tecnico_tdc(self, datos_tdc):
@@ -214,6 +168,15 @@ class TemisManager:
             
             # Solo modificar el campo IdBodegaOrigen
             data_carga["dataRequest"]["IdBodegaOrigen"] = datos_tdc['IdBodegaOrigen']
+
+            # Agregar parametros en SubBodega
+            subbodega = {
+                "IdDocumento": tdc_actual['data'].get('IdDocumento', 0),
+                "IdSubBodega": datos_tdc.get('IdBodegaOrigen', 0),
+                "CodigoSubBodega": datos_tdc.get('CodigoSubBodega', ""),
+                "FechaPersona": datos_tdc.get('FechaDocumento', "")
+            }
+            data_carga["dataRequest"]["SubBodegas"] = [subbodega]
 
             # Log del payload
             self.logger.info(f"Payload asignación: {json.dumps(data_carga, indent=2)}")
