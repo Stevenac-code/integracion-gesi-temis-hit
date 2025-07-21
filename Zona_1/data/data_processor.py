@@ -52,7 +52,7 @@ class GesiDataProcessor:
            
            resultado = pd.merge(
                resultado, 
-               codigo_tecnicos[['workGroupCod', 'IdBodegaOrigen']], 
+               codigo_tecnicos[['workGroupCod', 'IdBodegaOrigen', 'CodigoSubBodega']], 
                on='workGroupCod', 
                how='left'
            )
